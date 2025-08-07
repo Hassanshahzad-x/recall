@@ -1,0 +1,10 @@
+faiss_cpu==1.11.0.post1
+Flask==3.1.1
+flask_cors==6.0.1
+Flask_RESTful==0.3.10
+numpy==2.3.2
+openai==1.99.1
+PyPDF2==3.0.1
+python-dotenv==1.1.1
+sentence_transformers==5.0.0
+Werkzeug==3.1.3
