@@ -1,8 +1,9 @@
 from flask import request
 from flask_restful import Resource
 from werkzeug.utils import secure_filename
-import os
 from utils.chunks import process_pdf_and_store
+import os
+import glob
 
 UPLOAD_FOLDER = "uploads"
 
@@ -57,3 +58,19 @@ class RemoveFile(Resource):
                 for fname in remaining_files
             ],
         }, 200
+
+
+class RefreshFiles(Resource):
+    def get(self):
+        if not os.path.exists(UPLOAD_FOLDER):
+            return {"message": "Uploads folder does not exist"}, 404
+
+        deleted_files = []
+        for file_path in glob.glob(os.path.join(UPLOAD_FOLDER, "*")):
+            try:
+                os.remove(file_path)
+                deleted_files.append(os.path.basename(file_path))
+            except Exception as e:
+                return {"message": f"Error deleting {file_path}: {str(e)}"}, 500
+
+        return {"message": "All files deleted successfully"}, 200

@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { Upload as UploadFile, X, Search, Send } from "lucide-react";
 import { uploadFileToServer } from "../api/upload";
 import { askQuestion } from "../api/ask";
-import { removeFileFromServer } from "../api/remove";
+import { removeFileFromServer, refreshFiles } from "../api/remove";
 
 export default function UploadAndAsk() {
   const [files, setFiles] = useState([]);
@@ -17,6 +17,10 @@ export default function UploadAndAsk() {
   useEffect(() => {
     filesRef.current = files;
   }, [files]);
+
+  useEffect(() => {
+    refreshFiles();
+  }, []);
 
   const handleFileUpload = useCallback((fileList) => {
     const validTypes = [".pdf", ".docx", ".txt"];
