@@ -1,4 +1,4 @@
-faiss_cpu==1.11.0.post1
+faiss-cpu==1.7.4
 Flask==3.1.1
 flask_cors==6.0.1
 Flask_RESTful==0.3.10

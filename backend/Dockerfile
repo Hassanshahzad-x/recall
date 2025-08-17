@@ -16,6 +16,6 @@ RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTr
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE 8080
 
 CMD ["python", "server.py"]
