@@ -8,7 +8,7 @@ export function Navbar() {
           <FileText className="w-5 h-5" />
         </div>
         <div>
-          <h1 className="text-lg font-semibold text-gray-100">Recall</h1>
+          <h1 className="text-lg font-semibold text-gray-100">Recaller.ai</h1>
           <p className="text-xs text-gray-400">AI Knowledge Base</p>
         </div>
       </div>
