@@ -6,6 +6,7 @@ import os
 import glob
 
 UPLOAD_FOLDER = "uploads"
+DATABASE_FOLDER = "database"
 
 
 class RemoveFile(Resource):
@@ -65,8 +66,18 @@ class RefreshFiles(Resource):
         if not os.path.exists(UPLOAD_FOLDER):
             return {"message": "Uploads folder does not exist"}, 404
 
+        if not os.path.exists(DATABASE_FOLDER):
+            return {"message": "Database folder does not exist"}, 404
+
         deleted_files = []
         for file_path in glob.glob(os.path.join(UPLOAD_FOLDER, "*")):
+            try:
+                os.remove(file_path)
+                deleted_files.append(os.path.basename(file_path))
+            except Exception as e:
+                return {"message": f"Error deleting {file_path}: {str(e)}"}, 500
+        
+        for file_path in glob.glob(os.path.join(DATABASE_FOLDER, "*")):
             try:
                 os.remove(file_path)
                 deleted_files.append(os.path.basename(file_path))
