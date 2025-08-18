@@ -4,7 +4,7 @@ from routes import register_routes
 
 app = Flask(__name__)
 
-CORS(app, origins=["https://recallerai.netlify.app/"])
+CORS(app, origins=["https://recallerai.netlify.app"])
 
 app.config["UPLOAD_FOLDER"] = "uploads"
 
